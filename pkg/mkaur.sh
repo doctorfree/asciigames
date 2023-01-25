@@ -57,6 +57,7 @@ mkdir ${PKG}
 cp VERSION ${PKG}/VERSION
 cp pkg/aur/PKGBUILD ${PKG}/PKGBUILD
 cp pkg/aur/.SRCINFO ${PKG}/.SRCINFO
+cp pkg/aur/${PKG}.install ${PKG}/${PKG}.install
 cp pkg/aur/makepkg.conf ${PKG}/makepkg.conf
 
 echo "Creating ${PKG_NAME} PKGBUILD distribution archive"
