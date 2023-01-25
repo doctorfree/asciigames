@@ -4,11 +4,13 @@ ASCGME_DIRS="/usr/local/games/share/doc/nethack \
 /usr/local/games/share/doc/tetris \
 /usr/local/games/share/nethack \
 /usr/local/games/var/nethack \
+/usr/local/games/lib/ninvaders \
 /usr/local/share/asciigames \
 /usr/local/share/doc/asciigames"
 
 ASCGME_FILES="/usr/local/games/bin/gameserver \
 /usr/local/games/bin/nethack \
+/usr/local/games/bin/ninvaders \
 /usr/local/games/bin/tetris \
 /usr/local/games/gameserver \
 /usr/local/games/nethack \

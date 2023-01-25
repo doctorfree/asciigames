@@ -6,12 +6,11 @@ pkgbase = asciigames
 	install = asciigames.install
 	arch = x86_64
 	arch = armv7h
-	license = ('MIT' 'BSD')
+	license = ('MIT' 'BSD' 'GPL2')
 	makedepends = zip
 	makedepends = pkgconf
-	depends = util-linux
 	depends = ncurses
-	depends = readline
+	depends = zlib
 	source = asciigames::git+https://github.com/doctorfree/asciigames.git
 	sha256sums = SKIP
 

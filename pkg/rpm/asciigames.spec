@@ -7,6 +7,8 @@ URL:        https://github.com/doctorfree/asciigames
 Vendor:     Doctorwhen's Bodacious Laboratory
 Packager:   ronaldrecord@gmail.com
 License     : MIT
+# Nethack is BSD licensed, Tetris is MIT licensed, Ninvaders is GPLv2
+License: BSD and GPLv2 and MIT
 Summary     : ASCII Games
 
 %global __os_install_post %{nil}
@@ -37,6 +39,7 @@ cp -a %{_sourcedir}/usr %{buildroot}/usr
 %attr(0644, games, games) /usr/games/var/nethack/perm
 %attr(0644, games, games) /usr/games/var/nethack/record
 %attr(0644, games, games) /usr/games/var/nethack/xlogfile
+%attr(0644, games, games) /usr/games/lib/ninvaders/*
 %exclude %dir /usr/share/man/man1
 %exclude %dir /usr/share/man/man6
 %exclude %dir /usr/share/man
@@ -52,6 +55,7 @@ cp -a %{_sourcedir}/usr %{buildroot}/usr
 /usr/share/*
 /usr/games/gameserver
 /usr/games/nethack
+/usr/games/ninvaders
 /usr/games/tetris
 /usr/games/share/*
 

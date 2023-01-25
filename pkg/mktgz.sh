@@ -28,6 +28,9 @@ umask 0022
 # Subdirectory in which to create the distribution files
 OUT_DIR="${HERE}/dist/${PKG_NAME}_${PKG_VER}"
 
+# Build ninvaders
+./build ninvaders
+
 # Build tetris
 ./build tetris
 strip tetris/tetris
@@ -42,7 +45,7 @@ for dir in "usr" "${DESTDIR}" "${DESTDIR}/share" "${DESTDIR}/share/man" \
            "${DESTDIR}/share/doc" \
            "${DESTDIR}/share/doc/${PKG}" \
            "${DESTDIR}/share/${PKG}" "${DESTDIR}/games" "${DESTDIR}/games/bin" \
-           "${DESTDIR}/games/lib" "${DESTDIR}/games/var" \
+           "${DESTDIR}/games/lib" "${DESTDIR}/games/var" "${DESTDIR}/games/lib/ninvaders" \
            "${DESTDIR}/games/share" "${DESTDIR}/games/share/doc" \
            "${DESTDIR}/games/share/doc/tetris" \
            "${DESTDIR}/games/share/pixmaps" \
@@ -51,6 +54,27 @@ do
     [ -d ${OUT_DIR}/${dir} ] || ${SUDO} mkdir ${OUT_DIR}/${dir}
     ${SUDO} chown root:wheel ${OUT_DIR}/${dir}
 done
+
+# Install ninvaders
+cd ninvaders
+${SUDO} chown root ${OUT_DIR}/${DESTDIR}/games/lib/ninvaders
+${SUDO} chgrp wheel ${OUT_DIR}/${DESTDIR}/games/lib/ninvaders
+${SUDO} chmod 0775 ${OUT_DIR}/${DESTDIR}/games/lib/ninvaders
+${SUDO} touch ${OUT_DIR}/${DESTDIR}/games/lib/ninvaders/highscore
+${SUDO} cp LICENSE ${OUT_DIR}/${DESTDIR}/games/lib/ninvaders
+${SUDO} cp README.md ${OUT_DIR}/${DESTDIR}/games/lib/ninvaders
+${SUDO} cp ChangeLog ${OUT_DIR}/${DESTDIR}/games/lib/ninvaders
+${SUDO} chown root ${OUT_DIR}/${DESTDIR}/games/lib/ninvaders/highscore
+${SUDO} chgrp wheel ${OUT_DIR}/${DESTDIR}/games/lib/ninvaders/highscore
+${SUDO} chmod 0664 ${OUT_DIR}/${DESTDIR}/games/lib/ninvaders/*
+
+${SUDO} cp cmake_build/ninvaders ${OUT_DIR}/${DESTDIR}/games/bin
+${SUDO} chown root ${OUT_DIR}/${DESTDIR}/games/bin/ninvaders
+${SUDO} chgrp wheel ${OUT_DIR}/${DESTDIR}/games/bin/ninvaders
+${SUDO} chmod 02755 ${OUT_DIR}/${DESTDIR}/games/bin/ninvaders
+${SUDO} ln -r -s ${OUT_DIR}/${DESTDIR}/games/bin/ninvaders ${OUT_DIR}/${DESTDIR}/games/ninvaders
+${SUDO} gzip -9 ${OUT_DIR}/${DESTDIR}/games/lib/ninvaders/ChangeLog
+cd ..
 
 # Tetris
 ${SUDO} cp tetris/tetris ${OUT_DIR}/${DESTDIR}/games/bin

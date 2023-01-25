@@ -6,9 +6,9 @@ pkgrel=1
 pkgdesc="Console/terminal character based Ascii games"
 arch=('x86_64' 'armv7h')
 url="https://github.com/doctorfree/asciigames"
-license=('MIT' 'BSD')
-depends=(util-linux ncurses readline)
-makedepends=(zip pkgconf)
+license=('MIT' 'BSD' 'GPL2')
+depends=(ncurses zlib)
+makedepends=(cmake zip pkgconf)
 install=asciigames.install
 source=("${pkgname}::git+https://github.com/doctorfree/asciigames.git")
 sha256sums=('SKIP')
@@ -46,6 +46,10 @@ build() {
   make
   cd ..
 
+  cd ninvaders
+  cmake --build cmake_build -j2
+  cd ..
+
   cd tetris
   [ -f tetris ] || {
     ./configure.sh --prefix=/usr/games --enable-xlib=no --enable-curses=yes
@@ -63,7 +67,7 @@ package() {
       "${destdir}/share/doc" \
       "${destdir}/share/doc/${pkgname}" \
       "${destdir}/share/${pkgname}" "${destdir}/games" "${destdir}/games/bin" \
-      "${destdir}/games/lib" \
+      "${destdir}/games/lib" "${destdir}/games/lib/ninvaders" \
       "${destdir}/games/share" "${destdir}/games/share/doc" \
       "${destdir}/games/share/doc/tetris" \
       "${destdir}/games/share/pixmaps" \
@@ -78,6 +82,14 @@ package() {
   cp dat/license ${pkgdir}/${destdir}/games/share/nethack/license
   cd doc
   make DESTDIR=${pkgdir} manpages
+  cd ..
+
+  # Ninvaders
+  cd ninvaders
+  cp LICENSE ${pkgdir}/${destdir}/games/lib/ninvaders
+  cp README.md ${pkgdir}/${destdir}/games/lib/ninvaders
+  cp ChangeLog ${pkgdir}/${destdir}/games/lib/ninvaders
+  cp cmake_build/ninvaders ${pkgdir}/${destdir}/games/bin
   cd ..
 
   # Tetris

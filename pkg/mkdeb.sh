@@ -47,6 +47,9 @@ OUT_DIR="${SRC}/${SRC_NAME}/dist/${PKG_NAME}_${PKG_VER}"
 
 cd "${SRC}/${SRC_NAME}"
 
+# Install required development environment tools
+${SUDO} apt -y install build-essential libncurses-dev cmake
+
 # Build nethack
 if [ -x build ]
 then
@@ -59,6 +62,18 @@ else
               --enable-wizmode=doctorwhen
   make
   cd ..
+fi
+
+# Build ninvaders
+if [ -x build ]
+then
+  ./build ninvaders
+else
+  cd ninvaders
+  [ -f cmake_build/ninvaders ] || {
+    cmake -B cmake_build
+    cmake --build cmake_build -j2
+  }
 fi
 
 # Build tetris
@@ -101,7 +116,7 @@ for dir in "usr" "${DESTDIR}" "${DESTDIR}/share" "${DESTDIR}/share/man" \
            "${DESTDIR}/share/doc" \
            "${DESTDIR}/share/doc/${PKG}" \
            "${DESTDIR}/share/${PKG}" "${DESTDIR}/games" "${DESTDIR}/games/bin" \
-           "${DESTDIR}/games/lib" \
+           "${DESTDIR}/games/lib" "${DESTDIR}/games/lib/ninvaders" \
            "${DESTDIR}/games/share" "${DESTDIR}/games/share/doc" \
            "${DESTDIR}/games/share/doc/tetris" \
            "${DESTDIR}/games/share/pixmaps" \
@@ -122,6 +137,26 @@ ${SUDO} chgrp games ${OUT_DIR}/${DESTDIR}/games/bin/nethack
 ${SUDO} chmod 04755 ${OUT_DIR}/${DESTDIR}/games/bin/nethack
 ${SUDO} rm -f ${OUT_DIR}/${DESTDIR}/games/nethack
 ${SUDO} ln -r -s ${OUT_DIR}/${DESTDIR}/games/bin/nethack ${OUT_DIR}/${DESTDIR}/games/nethack
+cd ..
+
+cd ninvaders
+# Install ninvaders
+${SUDO} chown games ${OUT_DIR}/${DESTDIR}/games/lib/ninvaders
+${SUDO} chgrp games ${OUT_DIR}/${DESTDIR}/games/lib/ninvaders
+${SUDO} chmod 0755 ${OUT_DIR}/${DESTDIR}/games/lib/ninvaders
+${SUDO} touch ${OUT_DIR}/${DESTDIR}/games/lib/ninvaders/highscore
+${SUDO} cp LICENSE ${OUT_DIR}/${DESTDIR}/games/lib/ninvaders
+${SUDO} cp README.md ${OUT_DIR}/${DESTDIR}/games/lib/ninvaders
+${SUDO} cp ChangeLog ${OUT_DIR}/${DESTDIR}/games/lib/ninvaders
+${SUDO} chown games ${OUT_DIR}/${DESTDIR}/games/lib/ninvaders/highscore
+${SUDO} chgrp games ${OUT_DIR}/${DESTDIR}/games/lib/ninvaders/highscore
+${SUDO} chmod 0644 ${OUT_DIR}/${DESTDIR}/games/lib/ninvaders/*
+
+${SUDO} cp cmake_build/ninvaders ${OUT_DIR}/${DESTDIR}/games/bin
+${SUDO} chown games ${OUT_DIR}/${DESTDIR}/games/bin/ninvaders
+${SUDO} chgrp games ${OUT_DIR}/${DESTDIR}/games/bin/ninvaders
+${SUDO} chmod 04755 ${OUT_DIR}/${DESTDIR}/games/bin/ninvaders
+${SUDO} ln -r -s ${OUT_DIR}/${DESTDIR}/games/bin/ninvaders ${OUT_DIR}/${DESTDIR}/games/ninvaders
 cd ..
 
 # Tetris
