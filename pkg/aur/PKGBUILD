@@ -122,6 +122,7 @@ package() {
   cp tetris/tetris.desktop ${pkgdir}/${destdir}/games/share/applications
 
   cp README.md ${pkgdir}/${destdir}/share/doc/${pkgname}
+  cp copyright ${pkgdir}/${destdir}/share/doc/${pkgname}
   cp VERSION ${pkgdir}/${destdir}/share/doc/${pkgname}
   cp tetris/licence.txt \
     ${pkgdir}/${destdir}/share/doc/${pkgname}/license-tetris

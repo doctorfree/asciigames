@@ -184,6 +184,7 @@ ${SUDO} chgrp games ${OUT_DIR}/${DESTDIR}/games/var/tetris-hiscores
 ${SUDO} chmod 0664 ${OUT_DIR}/${DESTDIR}/games/var/tetris-hiscores
 
 ${SUDO} cp README.md ${OUT_DIR}/${DESTDIR}/share/doc/${PKG}
+${SUDO} cp copyright ${OUT_DIR}/${DESTDIR}/share/doc/${PKG}
 ${SUDO} cp VERSION ${OUT_DIR}/${DESTDIR}/share/doc/${PKG}
 ${SUDO} cp tetris/licence.txt ${OUT_DIR}/${DESTDIR}/share/doc/${PKG}/license-tetris
 ${SUDO} cp tetris/README ${OUT_DIR}/${DESTDIR}/share/doc/${PKG}/README-tetris
