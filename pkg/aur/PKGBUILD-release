@@ -119,8 +119,9 @@ package() {
     mv ${pkgdir}/${destdir}/share/man ${pkgdir}/usr/share
   }
   chmod 644 ${pkgdir}/usr/share/man/*/*
-  chmod 755 ${pkgdir}/${destdir}/bin/* \
-            ${pkgdir}/${destdir}/bin \
+  chmod 755 ${pkgdir}/${destdir}/games/bin \
+            ${pkgdir}/${destdir}/games/lib \
+            ${pkgdir}/${destdir}/games/share \
             ${pkgdir}/usr/share/man \
             ${pkgdir}/usr/share/man/*
   find ${pkgdir}/${destdir}/share/doc/${pkgname} -type d | while read dir
