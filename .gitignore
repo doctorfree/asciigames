@@ -52,6 +52,7 @@
 asciisector
 lib/AsciiSector
 nethack/compile
+nethack/configure
 nethack/src/nethack
 
 # nethack/

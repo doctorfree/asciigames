@@ -137,7 +137,7 @@ ${SUDO} chgrp games ${OUT_DIR}/${DESTDIR}/games/bin/nethack
 ${SUDO} chmod 04755 ${OUT_DIR}/${DESTDIR}/games/bin/nethack
 ${SUDO} rm -f ${OUT_DIR}/${DESTDIR}/games/nethack
 ${SUDO} ln -r -s ${OUT_DIR}/${DESTDIR}/games/bin/nethack ${OUT_DIR}/${DESTDIR}/games/nethack
-cd ..
+cd ../..
 
 cd ninvaders
 # Install ninvaders
@@ -185,11 +185,11 @@ ${SUDO} chmod 0664 ${OUT_DIR}/${DESTDIR}/games/var/tetris-hiscores
 
 ${SUDO} cp README.md ${OUT_DIR}/${DESTDIR}/share/doc/${PKG}
 ${SUDO} cp VERSION ${OUT_DIR}/${DESTDIR}/share/doc/${PKG}
-${SUDO} cp games/tetris/licence.txt ${OUT_DIR}/${DESTDIR}/share/doc/${PKG}/license-tetris
-${SUDO} cp games/tetris/README ${OUT_DIR}/${DESTDIR}/share/doc/${PKG}/README-tetris
+${SUDO} cp tetris/licence.txt ${OUT_DIR}/${DESTDIR}/share/doc/${PKG}/license-tetris
+${SUDO} cp tetris/README ${OUT_DIR}/${DESTDIR}/share/doc/${PKG}/README-tetris
 
-${SUDO} cp games/nethack/dat/license ${OUT_DIR}/${DESTDIR}/share/doc/${PKG}/LICENSE-nethack
-${SUDO} cp games/nethack/README ${OUT_DIR}/${DESTDIR}/share/doc/${PKG}/README-nethack
+${SUDO} cp nethack/dat/license ${OUT_DIR}/${DESTDIR}/share/doc/${PKG}/LICENSE-nethack
+${SUDO} cp nethack/README ${OUT_DIR}/${DESTDIR}/share/doc/${PKG}/README-nethack
 
 ${SUDO} chmod 644 ${OUT_DIR}/${DESTDIR}/share/man/*/*
 ${SUDO} chmod 755 ${OUT_DIR}/${DESTDIR}/bin/* \

@@ -110,7 +110,7 @@ ${SUDO} chgrp games ${OUT_DIR}/${DESTDIR}/games/bin/nethack
 ${SUDO} chmod 04755 ${OUT_DIR}/${DESTDIR}/games/bin/nethack
 ${SUDO} rm -f ${OUT_DIR}/${DESTDIR}/games/nethack
 ${SUDO} ln -r -s ${OUT_DIR}/${DESTDIR}/games/bin/nethack ${OUT_DIR}/${DESTDIR}/games/nethack
-cd ..
+cd ../..
 
 # Install ninvaders
 cd ninvaders
