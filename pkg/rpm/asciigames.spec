@@ -40,13 +40,10 @@ cp -a %{_sourcedir}/usr %{buildroot}/usr
 %attr(0644, games, games) /usr/games/var/nethack/record
 %attr(0644, games, games) /usr/games/var/nethack/xlogfile
 %attr(0644, games, games) /usr/games/lib/ninvaders/*
-%exclude %dir /usr/share/man/man1
 %exclude %dir /usr/share/man/man6
 %exclude %dir /usr/share/man
 %exclude %dir /usr/share/doc
-%exclude %dir /usr/share/menu
 %exclude %dir /usr/share
-%exclude %dir /usr/bin
 %exclude %dir /usr/games
 %exclude %dir /usr/games/bin
 %exclude %dir /usr/games/lib
