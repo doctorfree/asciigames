@@ -83,7 +83,7 @@ package() {
   cp dat/license ${pkgdir}/${destdir}/games/share/nethack/license
   cd doc
   make DESTDIR=${pkgdir} manpages
-  cd ..
+  cd ../..
 
   # Ninvaders
   cd ninvaders
