@@ -1,0 +1,18 @@
+pkgbase = asciigames
+	pkgdesc = Console/terminal character based Ascii games
+	pkgver = v1.0.1r1
+	pkgrel = 1
+	url = https://github.com/doctorfree/asciigames
+	install = asciigames.install
+	arch = x86_64
+	arch = armv7h
+	license = ('MIT' 'BSD')
+	makedepends = zip
+	makedepends = pkgconf
+	depends = util-linux
+	depends = ncurses
+	depends = readline
+	source = asciigames::git+https://github.com/doctorfree/asciigames.git
+	sha256sums = SKIP
+
+pkgname = asciigames

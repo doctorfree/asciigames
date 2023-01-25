@@ -1,0 +1,147 @@
+# Maintainer: Ronald Record <ronaldrecord@gmail.com>
+
+# Get the version and release from the VERSION file
+# Move to use of pkgver() function with something like this:
+#   git describe --long | sed 's/^v//;s/\([^-]*-g\)/r\1/;s/-/./g'
+#
+if [ -f VERSION ]
+then
+  . ./VERSION
+else
+  [ "${SRC}" ] || SRC="${HOME}/src/asciigames"
+  if [ -f ${SRC}/VERSION ]
+  then
+    . ${SRC}/VERSION
+  else
+    VERSION=1.0.1
+    RELEASE=1
+  fi
+fi
+
+pkgname=asciigames
+pkgver=v${VERSION}r${RELEASE}
+pkgrel=1
+pkgdesc="Console/terminal character based Ascii games"
+arch=('x86_64' 'armv7h')
+url="https://github.com/doctorfree/asciigames"
+license=('MIT' 'BSD')
+depends=(util-linux ncurses readline)
+makedepends=(zip pkgconf)
+install=asciigames.install
+source=("${pkgname}::git+https://github.com/doctorfree/asciigames.git")
+sha256sums=('SKIP')
+
+prepare() {
+  cd "${srcdir}/${pkgname}"
+  needgroup=
+  needuser=
+  grep ^games: /etc/group > /dev/null || needgroup=1
+  id games > /dev/null 2>&1 || needuser=1
+  if [ "${needgroup}" ] || [ "${needuser}" ]
+  then
+    cat << DOC
+--> The asciigames build requires user games:games to exist
+--> You can use the following commands to create this user:
+# sudo groupadd games
+# sudo useradd -r -c "Games pseudo-user" -g games -d /opt/games -s /bin/false games
+DOC
+   exit 1
+  fi
+}
+
+build() {
+  cd "${srcdir}/${pkgname}"
+
+  cd nethack
+  cd sys/autoconf
+  ./bootstrap.sh
+  cd ../..
+  chmod 755 configure
+  ./configure --prefix=/usr/games \
+              --with-owner=games \
+              --with-group=games \
+              --enable-wizmode=doctorwhen
+  make
+  cd ..
+
+  cd tetris
+  [ -f tetris ] || {
+    ./configure.sh --prefix=/usr/games --enable-xlib=no --enable-curses=yes
+    make
+    make gameserver
+  }
+  cd ..
+}
+
+package() {
+  cd "${srcdir}/${pkgname}"
+  destdir=usr
+
+  for dir in "usr" "${destdir}" "${destdir}/share" "${destdir}/share/man" \
+      "${destdir}/share/doc" \
+      "${destdir}/share/doc/${pkgname}" \
+      "${destdir}/share/${pkgname}" "${destdir}/games" "${destdir}/games/bin" \
+      "${destdir}/games/lib" \
+      "${destdir}/games/share" "${destdir}/games/share/doc" \
+      "${destdir}/games/share/doc/tetris" \
+      "${destdir}/games/share/pixmaps" \
+      "${destdir}/games/share/applications"
+  do
+    [ -d ${pkgdir}/${dir} ] || mkdir ${pkgdir}/${dir}
+  done
+
+  # Revised NetHack install using UnNetHack mods
+  cd nethack
+  make DESTDIR=${pkgdir} install
+  cp dat/license ${pkgdir}/${destdir}/games/share/nethack/license
+  cd doc
+  make DESTDIR=${pkgdir} manpages
+  cd ..
+
+  # Tetris
+  cp tetris/tetris ${pkgdir}/${destdir}/games/bin
+  cp tetris/gameserver ${pkgdir}/${destdir}/games/bin
+
+  cp tetris/licence.txt ${pkgdir}/${destdir}/games/share/doc/tetris
+  cp tetris/README ${pkgdir}/${destdir}/games/share/doc/tetris
+  cp tetris/INSTALL ${pkgdir}/${destdir}/games/share/doc/tetris
+  cp tetris/tetris.xpm ${pkgdir}/${destdir}/games/share/pixmaps
+  cp tetris/tetris.desktop ${pkgdir}/${destdir}/games/share/applications
+
+  cp README.md ${pkgdir}/${destdir}/share/doc/${pkgname}
+  cp VERSION ${pkgdir}/${destdir}/share/doc/${pkgname}
+  cp tetris/licence.txt \
+    ${pkgdir}/${destdir}/share/doc/${pkgname}/license-tetris
+  cp tetris/README ${pkgdir}/${destdir}/share/doc/${pkgname}/README-tetris
+
+  cp nethack/dat/license \
+    ${pkgdir}/${destdir}/share/doc/${pkgname}/LICENSE-nethack
+  cp nethack/README \
+    ${pkgdir}/${destdir}/share/doc/${pkgname}/README-nethack
+
+  [ -d ${pkgdir}/usr/share ] || mkdir -p ${pkgdir}/usr/share
+  [ "${destdir}" == "usr" ] || {
+    mv ${pkgdir}/${destdir}/share/man ${pkgdir}/usr/share
+  }
+  chmod 644 ${pkgdir}/usr/share/man/*/*
+  chmod 755 ${pkgdir}/${destdir}/bin/* \
+            ${pkgdir}/${destdir}/bin \
+            ${pkgdir}/usr/share/man \
+            ${pkgdir}/usr/share/man/*
+  find ${pkgdir}/${destdir}/share/doc/${pkgname} -type d | while read dir
+  do
+    chmod 755 "${dir}"
+  done
+  find ${pkgdir}/${destdir}/share/doc/${pkgname} -type f | while read f
+  do
+    chmod 644 "${f}"
+  done
+  find ${pkgdir}/${destdir}/share/${pkgname} -type d | while read dir
+  do
+    chmod 755 "${dir}"
+  done
+  find ${pkgdir}/${destdir}/share/${pkgname} -type f | while read f
+  do
+    chmod 644 "${f}"
+  done
+}
