@@ -30,3 +30,103 @@
 *.exe
 *.out
 *.app
+
+asciisector
+lib/AsciiSector
+nethack/compile
+nethack/src/nethack
+
+# nethack/
+nethack/Makefile
+nethack/config.log
+nethack/config.status
+nethack/tags
+nethack/TAGS
+nethack/.svn
+
+# nethack/dat/
+nethack/dat/Makefile
+nethack/dat/*.lev
+nethack/dat/*.bmp
+nethack/dat/data
+nethack/dat/dungeon.pdf
+nethack/dat/dungeon
+nethack/dat/nhdat
+nethack/dat/options
+nethack/dat/oracles
+nethack/dat/quest.dat
+nethack/dat/quest_levs
+nethack/dat/rumors
+nethack/dat/spec_levs
+nethack/dat/vaults.dat
+
+# nethack/doc/
+nethack/doc/Makefile
+nethack/doc/Guidebook.txt
+nethack/doc/Guidebook
+
+# nethack/include/
+nethack/include/autoconf.h
+nethack/include/autoconf_paths.h
+nethack/include/date.h
+nethack/include/dgn_comp.h
+nethack/include/lev_comp.h
+nethack/include/onames.h
+nethack/include/pm.h
+nethack/include/vis_tab.h
+nethack/include/win32api.h
+
+# nethack/src/
+nethack/src/*.o
+nethack/src/nhwin.a
+nethack/src/unnethack
+nethack/src/Makefile
+nethack/src/Sysunix
+nethack/src/config.h-t
+nethack/src/hack.h-t
+nethack/src/vis_tab.c
+nethack/src/monstr.c
+nethack/src/tile.c
+
+nethack/sys/autoconf/autoconf.hin
+
+# nethack/util/
+nethack/util/*.o
+nethack/util/Makefile
+nethack/util/dgn_comp
+nethack/util/dgn_lex.c
+nethack/util/dgn.tab.h
+nethack/util/dgn_yacc.c
+nethack/util/dlb
+nethack/util/lev_comp
+nethack/util/lev_lex.c
+nethack/util/lev.tab.h
+nethack/util/lev_yacc.c
+nethack/util/makedefs
+nethack/util/recover
+nethack/util/tilemap
+
+# nethack/win/
+nethack/win/*/*.o
+
+# tetris/
+tetris/gameserver
+tetris/tetris
+tetris/src/config.h
+tetris/src/src-conf.mk
+
+dist/*
+pkg/dist/arch/*
+pkg/dist/fedora/*
+pkg/dist/rpi/*
+releases/*
+tmp/*
+
+# vim files
+.*.sw[a-z]
+*.un~
+Session.vim
+.netrwhist
+
+#do not ignore .github directory
+!.github
