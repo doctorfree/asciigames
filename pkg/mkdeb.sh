@@ -95,8 +95,8 @@ mkdir dist
 
 [ -d ${OUT_DIR} ] && rm -rf ${OUT_DIR}
 mkdir ${OUT_DIR}
-cp -a pkg/debian ${OUT_DIR}/DEBIAN
-chmod 755 ${OUT_DIR} ${OUT_DIR}/DEBIAN ${OUT_DIR}/DEBIAN/*
+mkdir ${OUT_DIR}/DEBIAN
+chmod 755 ${OUT_DIR} ${OUT_DIR}/DEBIAN
 
 echo "Package: ${PKG}
 Version: ${PKG_VER}-${PKG_REL}
@@ -192,8 +192,9 @@ ${SUDO} cp nethack/dat/license ${OUT_DIR}/${DESTDIR}/share/doc/${PKG}/LICENSE-ne
 ${SUDO} cp nethack/README ${OUT_DIR}/${DESTDIR}/share/doc/${PKG}/README-nethack
 
 ${SUDO} chmod 644 ${OUT_DIR}/${DESTDIR}/share/man/*/*
-${SUDO} chmod 755 ${OUT_DIR}/${DESTDIR}/bin/* \
-                  ${OUT_DIR}/${DESTDIR}/bin \
+${SUDO} chmod 755 ${OUT_DIR}/${DESTDIR}/games/bin \
+                  ${OUT_DIR}/${DESTDIR}/games/lib \
+                  ${OUT_DIR}/${DESTDIR}/games/share \
                   ${OUT_DIR}/${DESTDIR}/share/man \
                   ${OUT_DIR}/${DESTDIR}/share/man/*
 find ${OUT_DIR}/${DESTDIR}/share/doc/${PKG} -type d | while read dir

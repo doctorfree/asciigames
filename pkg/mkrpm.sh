@@ -166,8 +166,9 @@ ${SUDO} cp nethack/dat/license ${OUT_DIR}/${DESTDIR}/share/doc/${PKG}/LICENSE-ne
 ${SUDO} cp nethack/README ${OUT_DIR}/${DESTDIR}/share/doc/${PKG}/README-nethack
 
 ${SUDO} chmod 644 ${OUT_DIR}/${DESTDIR}/share/man/*/*
-${SUDO} chmod 755 ${OUT_DIR}/${DESTDIR}/bin/* \
-                  ${OUT_DIR}/${DESTDIR}/bin \
+${SUDO} chmod 755 ${OUT_DIR}/${DESTDIR}/games/bin \
+                  ${OUT_DIR}/${DESTDIR}/games/lib \
+                  ${OUT_DIR}/${DESTDIR}/games/share \
                   ${OUT_DIR}/${DESTDIR}/share/man \
                   ${OUT_DIR}/${DESTDIR}/share/man/*
 find ${OUT_DIR}/${DESTDIR}/share/doc/${PKG} -type d | while read dir

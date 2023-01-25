@@ -6,9 +6,9 @@ Requires: util-linux, ncurses
 URL:        https://github.com/doctorfree/asciigames
 Vendor:     Doctorwhen's Bodacious Laboratory
 Packager:   ronaldrecord@gmail.com
-License     : MIT
-# Nethack is BSD licensed, Tetris is MIT licensed, Ninvaders is GPLv2
-License: BSD and GPLv2 and MIT
+# Nethack is licensed under the Nethack General Public License,
+# Tetris is MIT licensed, Ninvaders is GPLv2
+License: Nethack General Public License and GPLv2 and MIT
 Summary     : ASCII Games
 
 %global __os_install_post %{nil}
