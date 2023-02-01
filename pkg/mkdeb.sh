@@ -50,6 +50,16 @@ cd "${SRC}/${SRC_NAME}"
 # Install required development environment tools
 ${SUDO} apt -y install build-essential libncurses-dev cmake
 
+# Build 2048
+if [ -x build ]
+then
+  ./build 2048
+else
+  cd 2048
+  make
+  cd ..
+fi
+
 # Build nethack
 if [ -x build ]
 then
@@ -125,6 +135,8 @@ do
     [ -d ${OUT_DIR}/${dir} ] || ${SUDO} mkdir ${OUT_DIR}/${dir}
     ${SUDO} chown root:root ${OUT_DIR}/${dir}
 done
+
+${SUDO} cp 2048/2048 ${OUT_DIR}/${DESTDIR}/games/bin
 
 # Revised NetHack install using UnNetHack mods
 cd nethack

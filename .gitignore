@@ -42,6 +42,11 @@
 *.i*86
 *.x86_64
 *.hex
+2048/2048
+
+# IDE
+.idea/
+.vscode/
 
 # Debug files
 *.dSYM/
@@ -150,4 +155,3 @@ Session.vim
 
 #do not ignore .github directory
 !.github
-

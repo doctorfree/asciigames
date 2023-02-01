@@ -3,6 +3,11 @@
 # build - compile and optionally install asciigames components
 #
 
+build_2048() {
+  make
+  [ "${INSTALL}" ] && sudo PREFIX=${PREFIX} make install
+}
+
 build_nethack() {
   #
   # Repo: https://github.com/doctorfree/asciigames
@@ -159,6 +164,14 @@ shift $(( OPTIND - 1 ))
 for project in $*
 do
   case "${project}" in
+    2048)
+      PROJ=2048
+      [ -d ${PROJ} ] && {
+        cd ${PROJ}
+        build_2048
+        cd ..
+      }
+      ;;
     nethack)
       PROJ=nethack
       [ -d ${PROJ} ] && {
