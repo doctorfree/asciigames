@@ -28,6 +28,9 @@ umask 0022
 # Subdirectory in which to create the distribution files
 OUT_DIR="${HERE}/dist/${PKG_NAME}_${PKG_VER}"
 
+# Build 2048
+./build 2048
+
 # Build ninvaders
 ./build ninvaders
 
@@ -48,12 +51,26 @@ for dir in "usr" "${DESTDIR}" "${DESTDIR}/share" "${DESTDIR}/share/man" \
            "${DESTDIR}/games/lib" "${DESTDIR}/games/var" "${DESTDIR}/games/lib/ninvaders" \
            "${DESTDIR}/games/share" "${DESTDIR}/games/share/doc" \
            "${DESTDIR}/games/share/doc/tetris" \
+           "${DESTDIR}/games/share/doc/2048" \
            "${DESTDIR}/games/share/pixmaps" \
            "${DESTDIR}/games/share/applications"
 do
     [ -d ${OUT_DIR}/${dir} ] || ${SUDO} mkdir ${OUT_DIR}/${dir}
     ${SUDO} chown root:wheel ${OUT_DIR}/${dir}
 done
+
+${SUDO} cp 2048/2048 ${OUT_DIR}/${DESTDIR}/games/bin
+${SUDO} chmod 0755 ${OUT_DIR}/${DESTDIR}/games/bin/2048
+${SUDO} cp 2048/palette.sh ${OUT_DIR}/${DESTDIR}/games/bin/palette
+${SUDO} chmod 0755 ${OUT_DIR}/${DESTDIR}/games/bin/palette
+${SUDO} cp 2048/2048.desktop ${OUT_DIR}/${DESTDIR}/games/share/applications
+${SUDO} cp 2048/LICENSE ${OUT_DIR}/${DESTDIR}/games/share/doc/2048
+${SUDO} cp 2048/README.md ${OUT_DIR}/${DESTDIR}/games/share/doc/2048
+${SUDO} cp 2048/README_es.md ${OUT_DIR}/${DESTDIR}/games/share/doc/2048
+${SUDO} cp 2048/debian_2048.png ${OUT_DIR}/${DESTDIR}/games/share/doc/2048
+${SUDO} cp 2048/screenshot.png ${OUT_DIR}/${DESTDIR}/games/share/doc/2048
+${SUDO} ln -r -s ${OUT_DIR}/${DESTDIR}/games/bin/2048 ${OUT_DIR}/${DESTDIR}/games/2048
+${SUDO} ln -r -s ${OUT_DIR}/${DESTDIR}/games/bin/palette ${OUT_DIR}/${DESTDIR}/games/palette
 
 # Install ninvaders
 cd ninvaders

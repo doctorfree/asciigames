@@ -52,6 +52,10 @@ DOC
 build() {
   cd "${srcdir}/${pkgname}"
 
+  cd 2048
+  make
+  cd ..
+
   cd nethack
   cd sys/autoconf
   ./bootstrap.sh
@@ -89,11 +93,23 @@ package() {
       "${destdir}/games/lib" "${destdir}/games/lib/ninvaders" \
       "${destdir}/games/share" "${destdir}/games/share/doc" \
       "${destdir}/games/share/doc/tetris" \
+      "${destdir}/games/share/doc/2048" \
       "${destdir}/games/share/pixmaps" \
       "${destdir}/games/share/applications"
   do
     [ -d ${pkgdir}/${dir} ] || mkdir ${pkgdir}/${dir}
   done
+
+  cp 2048/2048 ${pkgdir}/${destdir}/games/bin
+  chmod 0755 ${pkgdir}/${destdir}/games/bin/2048
+  cp 2048/palette.sh ${pkgdir}/${destdir}/games/bin/palette
+  chmod 0755 ${pkgdir}/${destdir}/games/bin/palette
+  cp 2048/2048.desktop ${pkgdir}/${destdir}/games/share/applications
+  cp 2048/LICENSE ${pkgdir}/${destdir}/games/share/doc/2048
+  cp 2048/README.md ${pkgdir}/${destdir}/games/share/doc/2048
+  cp 2048/README_es.md ${pkgdir}/${destdir}/games/share/doc/2048
+  cp 2048/debian_2048.png ${pkgdir}/${destdir}/games/share/doc/2048
+  cp 2048/screenshot.png ${pkgdir}/${destdir}/games/share/doc/2048
 
   # Revised NetHack install using UnNetHack mods
   cd nethack

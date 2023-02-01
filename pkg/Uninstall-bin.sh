@@ -1,6 +1,7 @@
 #!/bin/bash
 
 ASCGME_DIRS="/usr/local/games/share/doc/nethack \
+/usr/local/games/share/doc/2048 \
 /usr/local/games/share/doc/tetris \
 /usr/local/games/share/nethack \
 /usr/local/games/var/nethack \
@@ -12,6 +13,9 @@ ASCGME_FILES="/usr/local/games/bin/gameserver \
 /usr/local/games/bin/nethack \
 /usr/local/games/bin/ninvaders \
 /usr/local/games/bin/tetris \
+/usr/local/games/bin/2048 \
+/usr/local/games/2048 \
+/usr/local/games/share/applications/2048.desktop \
 /usr/local/games/gameserver \
 /usr/local/games/nethack \
 /usr/local/games/share/applications/tetris.desktop \
