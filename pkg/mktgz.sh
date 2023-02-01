@@ -124,9 +124,7 @@ ${SUDO} cp tetris/licence.txt ${OUT_DIR}/${DESTDIR}/share/doc/${PKG}/license-tet
 ${SUDO} cp tetris/README ${OUT_DIR}/${DESTDIR}/share/doc/${PKG}/README-tetris
 
 ${SUDO} chmod 644 ${OUT_DIR}/${DESTDIR}/share/man/*/*
-${SUDO} chmod 755 ${OUT_DIR}/${DESTDIR}/bin/* \
-                  ${OUT_DIR}/${DESTDIR}/bin \
-                  ${OUT_DIR}/${DESTDIR}/share/man \
+${SUDO} chmod 755 ${OUT_DIR}/${DESTDIR}/share/man \
                   ${OUT_DIR}/${DESTDIR}/share/man/*
 find ${OUT_DIR}/${DESTDIR}/share/doc/${PKG} -type d | while read dir
 do
