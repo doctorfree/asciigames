@@ -1,6 +1,9 @@
 #!/bin/bash
 
 sudo rm -rf dist releases asciigames
+cd 2048
+make clean
+cd ..
 cd nethack
 [ -f Makefile ] && make spotless
 rm -f config.log config.status configure doc/Guidebook.txt \
