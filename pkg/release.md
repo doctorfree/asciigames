@@ -22,7 +22,7 @@ Download the [latest Arch, Debian, or RPM package format release](https://github
 Install the package on Arch Linux based systems by executing the command:
 
 ```shell
-sudo pacman -U ./asciigames_1.0.1-1-x86_64.pkg.tar.zst
+sudo pacman -U ./asciigames_1.0.1-2-x86_64.pkg.tar.zst
 ```
 
 ### Debian based installation
@@ -31,14 +31,14 @@ Install the package on Debian based systems by executing the commands:
 
 ```shell
 sudo apt update -y
-sudo apt install ./asciigames_1.0.1-1.amd64.deb
+sudo apt install ./asciigames_1.0.1-2.amd64.deb
 ```
 
 or, on a Raspberry Pi:
 
 ```shell
 sudo apt update -y
-sudo apt install ./asciigames_1.0.1-1.armhf.deb
+sudo apt install ./asciigames_1.0.1-2.armhf.deb
 ```
 
 ### RPM based installation
@@ -46,7 +46,7 @@ sudo apt install ./asciigames_1.0.1-1.armhf.deb
 Install the package on RPM based systems by executing the command
 ```shell
 sudo dnf update -y
-sudo dnf localinstall ./asciigames-1.0.1-1.x86_64.rpm
+sudo dnf localinstall ./asciigames-1.0.1-2.x86_64.rpm
 ```
 
 ### Manual installation
@@ -55,9 +55,9 @@ On systems for which the Arch, Debian, or RPM packages will not suffice, install
 
 ```shell
 chmod 755 Install-bin.sh
-sudo ./Install-bin.sh /path/to/asciigames_1.0.1-1.<arch>.tgz
+sudo ./Install-bin.sh /path/to/asciigames_1.0.1-2.<arch>.tgz
 or
-sudo ./Install-bin.sh /path/to/asciigames_1.0.1-1.<arch>.zip
+sudo ./Install-bin.sh /path/to/asciigames_1.0.1-2.<arch>.zip
 ```
 
 ## Removal

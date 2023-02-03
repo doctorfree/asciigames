@@ -1,7 +1,7 @@
 # Maintainer: Ronald Record <ronaldrecord@gmail.com>
 
 pkgname=asciigames
-pkgver=v1.0.1r1
+pkgver=v1.0.1r2
 pkgrel=1
 pkgdesc="Console/terminal character based Ascii games"
 arch=('x86_64' 'armv7h')

@@ -7,6 +7,10 @@ Files: *
 Copyright: 2023 Ronald Record <ronaldrecord@gmail.com>
 License: MIT
 
+Files: 2048/*
+Copyright: 2014 Maurits van der Schee
+License: MIT
+
 Files: nethack/*
 Copyright: 1993-2002 NetHack Development Team
 License: Nethack General Public License
