@@ -50,9 +50,11 @@ cp -a %{_sourcedir}/usr %{buildroot}/usr
 %exclude %dir /usr/games/share
 %exclude %dir /usr/games/var
 /usr/share/*
+/usr/games/2048
 /usr/games/gameserver
 /usr/games/nethack
 /usr/games/ninvaders
+/usr/games/palette
 /usr/games/tetris
 /usr/games/share/*
 
