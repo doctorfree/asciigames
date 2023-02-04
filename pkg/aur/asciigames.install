@@ -42,6 +42,15 @@ post_install() {
   printf "%b\n" "${ascin}"
 }
 
+post_remove() {
+  rm -f /usr/games/nethack
+  rm -f /usr/games/ninvaders
+  rm -f /usr/games/tetris
+  rm -f /usr/games/gameserver
+  rm -f /usr/games/var/tetris-hiscores
+  rm -rf /usr/games/lib/ninvaders
+}
+
 read -d '' ascin <<'EOF'
 View additional details at:
   - https://github.com/doctorfree/asciigames#readme
